@@ -4,8 +4,9 @@ export default class World {
         this.context = this.canvas.getContext("2d");
         this.canvas.width = screen.canvas.width;
         this.canvas.height = screen.canvas.height;
+        this.texture;
 
-        this.gravity = .8;
+        this.gravity = .4;
 
         // Sky
         this.context.fillStyle = "blue";
@@ -20,12 +21,21 @@ export default class World {
 
     hasGround(x, y) {
         const pixelIndex = (y * this.canvas.width + x) * 4;
-        if(this.image.data[pixelIndex + 2] === 33) return true;
+        console.log(this.image.data[pixelIndex + 2])
+        if(this.image.data[pixelIndex + 2] !== 255 && this.image.data[pixelIndex + 2] !== undefined) return true;
         return false;
     }
     
     getRenderer() {
         return this.context;
+    }
+    create() {
+        for(let i = 0; i < 41; i++) {
+            for(let j = 0; j < 20; j++) {
+                const iPos = j%2===0 ? i * 20 : -10 + i * 20;
+                this.context.drawImage(this.texture, iPos, 250 + j * 10);
+            }
+        }
     }
 
     filledCircle(x, y, radius) {

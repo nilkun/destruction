@@ -4,21 +4,21 @@ class Bullet {
         this.y = y;
         this.xVel = xVel;
         this.yVel = yVel;
-        this.speed = 200;
+        this.speed = 500;
     }
     update(elapsed, enemies) {
         const bombs = enemies.bombs;
         // console.log(bombs)
         this.x += this.xVel * elapsed * this.speed;
         this.y += this.yVel * elapsed * this.speed;
-        
+        const difficulty = 5;
         for(let i = 0; i < bombs.length; i++) {
             const x = this.x - bombs[i].x;
             const y = this.y - bombs[i].y;
-            const r = 2 + bombs[i].radius;
+            const r = 2 + bombs[i].radius + difficulty;
             // console.log(r)
             if(r * r > x * x + y * y) {
-                bombs.splice(i, 1);
+                bombs[i].kill();
                 break;
             }
         }
@@ -35,7 +35,7 @@ class Bullet {
 export default class Player {
     constructor() {
         this.x = 400;
-        this.y = 100;
+        this.y = 240;
         this.angle = 0.5 * Math.PI;
         this.xVel = 0;
         this.yVel = 0;
@@ -45,7 +45,8 @@ export default class Player {
         this.cos = 0;
         this.coolDown = 0;
         this.prevY = 0;
-        this.maxSpeed = 100;
+        this.maxSpeed = 250;
+        this.image;
 
         this.barrelLength = 15;
         this.barrelWidth = 3;
@@ -54,7 +55,7 @@ export default class Player {
     }
 
     moveTurret(right) {
-        const movement = .05;
+        const movement = .1;
         if(!right) {
             this.angle -= movement;
             if(this.angle <= -0.5 * Math.PI) this.angle = -.5 * Math.PI;
@@ -66,12 +67,13 @@ export default class Player {
     }
 
     move(right) {
+        const acceleration = 2
         if(right) {
-            this.xVel++;
+            this.xVel += acceleration;
             if(this.xVel > this.maxSpeed) this.xVel = this.maxSpeed;
         }
         else if(!right) {
-            this.xVel--;
+            this.xVel -= acceleration;
             if(this.xVel < -this.maxSpeed) this.xVel = -this.maxSpeed;
         }
     }
@@ -168,13 +170,13 @@ export default class Player {
         });
 
         // Render circle
-        renderer.beginPath();
-        renderer.fillStyle = "green";
-        renderer.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        renderer.fill();
+        // renderer.beginPath();
+        // renderer.fillStyle = "green";
+        // renderer.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        // renderer.fill();
 
         renderer.beginPath();
-        
+        renderer.fillStyle = "green";
         this.sin = Math.sin(this.angle);
         this.cos = Math.cos(this.angle);
 
@@ -189,7 +191,8 @@ export default class Player {
         renderer.lineTo(this.x - x2 + x1, this.y + y2 + y1);        
         renderer.lineTo(this.x - x2, this.y + y2);
         renderer.lineTo(this.x + x2, this.y - y2);
-
         renderer.fill();
+
+        renderer.drawImage(this.image, this.x - 10, this.y - 10)
     }
 }
