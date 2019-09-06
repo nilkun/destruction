@@ -1,3 +1,5 @@
-DESTRUCTION!!!
+Attack of the Destructoids!!!
 
-Destroy the bombs before they destroy the world!
+Destroy the Destructoids or be destroyed!
+
+Play it on itch.io: https://nilkun.itch.io/destructoids

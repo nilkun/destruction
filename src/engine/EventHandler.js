@@ -1,8 +1,8 @@
 const EventHandler = (keyStates, player) => {
-        if(keyStates.inputs["ArrowUp"]) {
+        if(keyStates.inputs["z"]) {
             player.moveTurret(false);     
         }
-        if(keyStates.inputs["ArrowDown"]) {
+        if(keyStates.inputs["c"]) {
             player.moveTurret(true);     
         }
 
@@ -13,13 +13,9 @@ const EventHandler = (keyStates, player) => {
         if(keyStates.inputs["ArrowRight"]) {
             player.move(true);
         }
-        if(keyStates.inputs[" "]) {
-            player.jump();
-        }
-        if(keyStates.inputs["p"]) {
-            togglePause();
-        }
-
+        // if(keyStates.inputs[" "]) {
+        //     player.jump();
+        // }
         if(keyStates.inputs["x"]) {
             player.fire();
         }

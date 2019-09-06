@@ -1,0 +1,13 @@
+{
+  "name": "attackofthedestructoids",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.39.3"
+  }
+}

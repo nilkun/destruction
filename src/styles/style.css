@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    background: black;
+    color: yellow;
+}
+
+.cvs {
+    width: 800px;
+    height: 600px;
+}
+.main {
+    display: flex;
+}
+.title {
+    margin: 10px;
+    text-align: center;
+}
+.data {
+    width: 400px;
+    margin: 10px;
+    font-style: bold;
+}
+.text {
+    display: flex;
+}
